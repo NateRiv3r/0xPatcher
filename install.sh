@@ -27,8 +27,11 @@ sudo apt-get install g++ > /dev/null
 
 echo "[*] Compiling project"
 mkdir bin
-g++ src/param_parser/ParamParser.cpp -o bin/parser.o -c
-g++ src/patch.cpp bin/parser.o -o patch
+g++ -std=c++11 src/utils/exceptions.cpp -o bin/exceptions.o -c
+g++ -std=c++11 src/utils/dev_tools.cpp -o bin/dev_tools.o -c
+g++ -std=c++11 src/param_parser/param_parser.cpp -o bin/parser.o -c
+g++ -std=c++11 src/patcher/patcher.cpp -o bin/patcher.o -c
+g++ -std=c++11 src/main.cpp bin/exceptions.o bin/dev_tools.o bin/parser.o bin/patcher.o -o patch
 
 echo "[*] Installing system wide"
 sudo mv patch "$INSTALL_PATH"
