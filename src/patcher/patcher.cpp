@@ -2,14 +2,19 @@
 
 void Patcher::patch(char* p_inFile, int p_byte, int p_offset, bool p_verbose)
 {
-    FILE * ff = fopen(p_inFile, "r+");
 
-    try {
-        fseek(ff, p_offset, SEEK_SET);
-    }
-    catch (...) {
+    std::cout << "yo" << std::endl;
+    FILE * ff = fopen(p_inFile, "r+");
+    std::cout << "yo" << std::endl;
+
+    struct stat buffer;
+    std::string filename(p_inFile);
+    if (stat (filename.c_str(), &buffer) != 0) {
         exception("[!] Error : file not found");
     }
+
+    fseek(ff, p_offset, SEEK_SET);
+
     if (p_verbose) {
         char read_byte[1];
         std::fread(read_byte, 1, 1, ff);
@@ -17,6 +22,7 @@ void Patcher::patch(char* p_inFile, int p_byte, int p_offset, bool p_verbose)
         std::cout << "[+] Replaced 0x" << std::hex << read_byte_int << " by 0x" << std::hex << p_byte << " at offset " << p_offset << std::endl;
         fseek(ff, p_offset, SEEK_SET);
     }
+
     fwrite((char *) &p_byte, 1, 1, ff);
 }
 

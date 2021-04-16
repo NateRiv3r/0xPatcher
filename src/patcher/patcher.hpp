@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include "../utils/exceptions.hpp"
+#include <sys/stat.h>
 
 class Patcher {
     public:
