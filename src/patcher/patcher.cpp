@@ -3,9 +3,7 @@
 void Patcher::patch(char* p_inFile, int p_byte, int p_offset, bool p_verbose)
 {
 
-    std::cout << "yo" << std::endl;
     FILE * ff = fopen(p_inFile, "r+");
-    std::cout << "yo" << std::endl;
 
     struct stat buffer;
     std::string filename(p_inFile);
