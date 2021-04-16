@@ -13,14 +13,18 @@ int main(int argc, char** argv)
     int byte = parser->getByte();
     int offset = parser->getOffset();
     char* inFile = parser->getInFile();
+    char* outFile;
     if (output) {
-        char* outFile = parser->getOutFile();
+        outFile = parser->getOutFile();
     }
 
 
     Patcher * patcher = new Patcher();
     if (output) {
-        patcher->patch(verbose, byte, offset, );
+        patcher->patch(inFile, byte, offset, verbose, outFile);
+    }
+    else {
+        patcher->patch(inFile, byte, offset, verbose);
     }
 
 

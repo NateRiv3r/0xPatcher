@@ -1,12 +1,13 @@
 # 0xPatcher
-0xPatcher helps you quickly patch some bytes of a file.
+0xPatcher helps you quickly patch some bytes in a file.
 
 ## Changelog
 
-The detailed changelog is available in the [Changelog](Changelog.md) file.
 ### V.1.0.0
  - Patch one byte at a given index
  - -o and -v flags
+ - Know bugs :
+    - Display problem when combining -o and -v flags 
 
 ## Installation
 ### Linux
@@ -32,8 +33,8 @@ patch file byte offset [OPTIONS]
                          no errors where encountered
                        
     Examples :
-        patch image.png 5f 8
-        patch file.pdf 0x73 16 -v -o file_copy.pdf
+        patch mario.png 5f 8
+        patch mario.png 0x73 16 -v -o mario_copy.pdf
 ```
 
 ## Upcoming
@@ -42,6 +43,6 @@ The next release should include the support of multiple bytes patching at the sa
 
 I consider adding a config file feature. This would allow the user to pass a configuration file to the program with
 multiple bytes and indexes. This would avoid calling the binary multiple times, from a python script for example (wich
-is pretty time consumming). A single call with a custom made input file would do the job.
+is pretty time consuming). A single call with a custom made input file would do the job.
 
 I also consider adding support for more operating systems (Windows/macOS).
